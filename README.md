@@ -45,6 +45,24 @@ tests/               # pytest suite (Phase 7)
 docs/                # Architecture & operational docs (Phase 8)
 ```
 
+## Screenshots
+
+**OpenAPI / Swagger UI** — the full API surface (auth, uploads, jobs, webhooks, exports, audit):
+
+![Swagger UI](docs/images/swagger-overview.png)
+
+**Structured validation errors** — `GET /api/v1/uploads/{id}/errors`:
+
+![Validation errors](docs/images/validation-errors.png)
+
+**Async job result** — `GET /api/v1/jobs/{id}` (processed by the Celery worker):
+
+![Job result](docs/images/job-result.png)
+
+**Operational audit log** — `GET /api/v1/audit-logs` (admin):
+
+![Audit logs](docs/images/audit-logs.png)
+
 ## API endpoints
 
 | Method | Path | Description | Role |
