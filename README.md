@@ -1,12 +1,10 @@
 # IntegrationOps
 
-![CI](https://github.com/OWNER/integrationops/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/Arcan17/integrationops/actions/workflows/ci.yml/badge.svg)
 
 A Python backend platform for **data ingestion, validation, async processing, API automation and operational workflows**.
 
 IntegrationOps lets users upload messy business data (CSV/XLSX), validates and stores clean records in PostgreSQL, runs async processing jobs with retry support, tracks job status, exports results, emits webhook notifications, and records an operational audit trail — modeled as a realistic internal company platform.
-
-> Replace `OWNER` in the badge URL with your GitHub org/user once published.
 
 ## Features
 
