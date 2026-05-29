@@ -4,9 +4,10 @@ from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import FileResponse
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.api.v1.deps import require_roles
+from app.api.v1.deps import get_current_user, require_roles
 from app.db.session import get_db
 from app.models.enums import ExportStatus, UserRole
 from app.models.export import ExportJob
@@ -51,6 +52,18 @@ def create_export_job(
     )
     dispatch_export(export.id)
     return export
+
+
+@router.get("", response_model=list[ExportRead], summary="List export jobs")
+def list_exports(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+) -> list[ExportJob]:
+    """List export jobs visible to the current user (admins see all)."""
+    stmt = select(ExportJob).order_by(ExportJob.created_at.desc())
+    if current_user.role is not UserRole.admin:
+        stmt = stmt.where(ExportJob.requested_by == current_user.id)
+    return list(db.scalars(stmt))
 
 
 @router.get("/{export_id}", response_model=ExportRead, summary="Get an export job")

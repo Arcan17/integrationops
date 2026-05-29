@@ -1,6 +1,7 @@
 """FastAPI application entrypoint for IntegrationOps."""
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app import __version__
 from app.api.v1.router import api_router
@@ -17,6 +18,15 @@ app = FastAPI(
     ),
     docs_url="/docs",
     openapi_url="/openapi.json",
+)
+
+# Allow the local dashboard (and any configured origins) to call the API.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=list(settings.CORS_ORIGINS),
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(api_router, prefix=settings.API_V1_PREFIX)

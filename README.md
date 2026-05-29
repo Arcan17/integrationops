@@ -155,6 +155,36 @@ Uploads are limited to `.csv` / `.xlsx` and `MAX_UPLOAD_SIZE_BYTES` (default 5 M
 - **Audit logs** — every significant operation is recorded and queryable at
   `GET /api/v1/audit-logs` (admin only).
 
+## Dashboard (Next.js)
+
+A lightweight **Next.js + TypeScript** dashboard lives in [`frontend/`](frontend/).
+It consumes the existing API (no backend logic duplicated) and makes the platform
+easy to understand visually. Pages: **Login**, **Overview** (metrics), **Uploads**,
+**Validation errors**, **Jobs**, **Exports** (with downloads), and **Audit logs**.
+
+Run it locally (with the API already running):
+
+```bash
+cd frontend
+cp .env.local.example .env.local   # point NEXT_PUBLIC_API_URL at your API
+npm install
+npm run dev                        # http://localhost:3000
+```
+
+> The API enables CORS for `http://localhost:3000` (configurable via `CORS_ORIGINS`).
+
+**Overview**
+
+![Dashboard overview](docs/images/dashboard-overview.png)
+
+**Validation errors view**
+
+![Dashboard validation errors](docs/images/dashboard-upload-errors.png)
+
+**Jobs**
+
+![Dashboard jobs](docs/images/dashboard-jobs.png)
+
 ## Testing
 
 ```bash

@@ -53,6 +53,9 @@ class Settings(BaseSettings):
     EXPORT_DIR: str = Field(default="exports")
     WEBHOOK_TIMEOUT_SECONDS: float = Field(default=10.0)
 
+    # CORS — origins allowed to call the API (e.g. the local dashboard)
+    CORS_ORIGINS: tuple[str, ...] = ("http://localhost:3000",)
+
     @property
     def celery_broker(self) -> str:
         return self.CELERY_BROKER_URL or self.REDIS_URL
