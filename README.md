@@ -45,6 +45,31 @@ tests/               # pytest suite (Phase 7)
 docs/                # Architecture & operational docs (Phase 8)
 ```
 
+## API endpoints
+
+| Method | Path | Description | Role |
+|---|---|---|---|
+| GET | `/api/v1/health` | Liveness check | public |
+| POST | `/api/v1/auth/register` | Register a user (default `viewer`) | public |
+| POST | `/api/v1/auth/login` | Obtain a JWT access token | public |
+| GET | `/api/v1/users/me` | Current user profile | authenticated |
+| POST | `/api/v1/uploads` | Upload & ingest a CSV/XLSX file | operator |
+| GET | `/api/v1/uploads` | List upload batches | authenticated |
+| GET | `/api/v1/uploads/{id}` | Get a batch with its files | owner / admin |
+| GET | `/api/v1/uploads/{id}/errors` | List validation errors for a batch | owner / admin |
+| POST | `/api/v1/jobs` | Create & enqueue a processing job | operator |
+| GET | `/api/v1/jobs` | List processing jobs | owner / admin |
+| GET | `/api/v1/jobs/{id}` | Get job status & result | owner / admin |
+| POST | `/api/v1/jobs/{id}/retry` | Retry a failed job | operator |
+| POST | `/api/v1/webhooks` | Register a webhook endpoint | operator |
+| GET | `/api/v1/webhooks` | List webhook endpoints | owner / admin |
+| POST | `/api/v1/exports` | Create & enqueue a CSV/XLSX export | operator |
+| GET | `/api/v1/exports/{id}` | Get export job status | owner / admin |
+| GET | `/api/v1/exports/{id}/download` | Download a completed export | owner / admin |
+| GET | `/api/v1/audit-logs` | Query operational audit logs | admin |
+
+Full interactive docs (OpenAPI / Swagger UI) at `/docs` when running.
+
 ## Run locally (Docker)
 
 ```bash
