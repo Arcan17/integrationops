@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.eggs/
+
+# Environment & secrets
+.env
+*.env
+!.env.example
+
+# Test & tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Local data & uploads
+/data/
+/uploads/
+/exports/
+
+# Local Docker Compose overrides
+docker-compose.override.yml
