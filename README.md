@@ -1,10 +1,29 @@
 # IntegrationOps
 
-![CI](https://github.com/Arcan17/integrationops/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/Arcan17/integrationops/actions/workflows/ci.yml/badge.svg)](https://github.com/Arcan17/integrationops/actions/workflows/ci.yml)
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)](https://fastapi.tiangolo.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A Python backend platform for **data ingestion, validation, async processing, API automation and operational workflows**.
+> Production-style Python backend for data ingestion, async job processing, signed webhooks and operational audit trails.
 
-IntegrationOps lets users upload messy business data (CSV/XLSX), validates and stores clean records in PostgreSQL, runs async processing jobs with retry support, tracks job status, exports results, emits webhook notifications, and records an operational audit trail — modeled as a realistic internal company platform.
+![IntegrationOps — dashboard overview showing uploads, jobs, exports and audit logs](docs/images/dashboard-overview.png)
+
+A realistic internal company platform: upload messy CSV/XLSX data, validate it row-by-row, run async Celery jobs, export results and receive HMAC-signed webhook notifications — all with JWT auth, RBAC and a full audit log.
+
+## What it demonstrates
+
+| Capability | Implementation | Detail |
+|---|---|---|
+| **Async job processing** | Celery + Redis | Bounded retries, status tracking, cancellation |
+| **HMAC-signed webhooks** | SHA-256 signature header | Per-attempt delivery records, retry on failure |
+| **Row-level validation** | Pydantic schemas | Structured error reporting per row |
+| **RBAC + JWT auth** | FastAPI + PyJWT | admin / operator / viewer roles |
+| **Audit trail** | PostgreSQL | Every significant action logged with actor + timestamp |
+| **Full-stack dashboard** | Next.js + TypeScript | Uploads, jobs, exports, audit log views |
+| **CI/CD + testing** | GitHub Actions + pytest | 100+ tests, zero external dependencies in CI |
+
+---
 
 ## Features
 
